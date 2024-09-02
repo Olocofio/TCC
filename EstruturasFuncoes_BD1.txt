@@ -1,0 +1,128 @@
+CREATE TABLE usuario (
+    id INT SERIAL NOT NULL,
+    nome VARCHAR(100),
+    email VARCHAR(254),
+    senha VARCHAR(64),
+    telefone VARCHAR(20)
+);
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE TABLE partida (
+    id_pont INT SERIAL NOT NULL,
+    id_usu INT,
+    dt_game DATE,
+    hr_game TIME,
+    pontuacao INT,
+    resultado NUMERIC(10,2),
+    PRIMARY KEY (id_pont),
+    FOREIGN KEY (id_usu) REFERENCES Usuario(id)
+);
+
+CREATE OR REPLACE FUNCTION atualizar_resultado()
+RETURNS TRIGGER AS $$
+BEGIN
+    -- Calcula o resultado e atualiza a coluna 'resultado' com duas casas decimais
+    IF NEW.qtd_perguntas != 0 THEN
+        NEW.resultado := ROUND((NEW.pontuacao * 100.0) / NEW.qtd_perguntas, 2);
+    ELSE
+        NEW.resultado := NULL; -- Define NULL se qtd_perguntas for 0 para evitar divisão por zero
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_atualizar_resultado
+BEFORE INSERT OR UPDATE ON partida
+FOR EACH ROW
+EXECUTE FUNCTION atualizar_resultado();
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE TABLE pergunta (
+    id_perg INT SERIAL NOT NULL,
+    materia VARCHAR(50),
+    pergunta TEXT,
+    resposta1 TEXT,
+    resposta2 TEXT,
+    resposta3 TEXT,
+    resposta4 TEXT,
+    resposta_correta TEXT,
+    PRIMARY KEY (id_perg)
+);
+
+CREATE OR REPLACE FUNCTION embaralhar_array(arr TEXT[])
+RETURNS TEXT[] AS $$
+DECLARE
+    n INT;
+    i INT;
+    temp TEXT;
+    indices INT[];
+    used_indices INT[];
+    random_index INT;
+    shuffled TEXT[] := ARRAY[]::TEXT[]; -- Inicializa o array vazio de resultados
+BEGIN
+    n := array_length(arr, 1);
+    
+    -- Gera uma lista de índices [1, 2, ..., n]
+    indices := array(SELECT generate_series(1, n));
+    used_indices := ARRAY[]::INT[]; -- Array para armazenar índices já usados
+    
+    -- Embaralha o array
+    FOR i IN 1..n LOOP
+        -- Escolhe um índice aleatório não repetido
+        LOOP
+            random_index := (floor(random() * n) + 1)::int;
+            EXIT WHEN NOT random_index = ANY(used_indices); -- Sai do loop se o índice não foi usado
+        END LOOP;
+        
+        -- Marca o índice como usado
+        used_indices := array_append(used_indices, random_index);
+
+        -- Adiciona o valor ao array embaralhado
+        shuffled := array_append(shuffled, arr[random_index]);
+    END LOOP;
+
+    RETURN shuffled;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT
+    pergunta,
+    shuffled[1] AS resposta1,
+    shuffled[2] AS resposta2,
+    shuffled[3] AS resposta3,
+    shuffled[4] AS resposta4
+FROM pergunta
+JOIN LATERAL (
+    SELECT embaralhar_array(ARRAY[resposta1, resposta2, resposta3, resposta4]) AS shuffled
+) AS resultado ON true;
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE TABLE pontuacao (
+    id_pontuacao SERIAL PRIMARY KEY,
+    id_usuario INT NOT NULL,
+    geografia INT DEFAULT 0,
+    historia INT DEFAULT 0,
+    portugues INT DEFAULT 0,
+    matematica INT DEFAULT 0,
+    ciencia_tecnologia INT DEFAULT 0,
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id)
+);
+
+update pergunta set resposta_correta = '3' where resposta_correta = 'resposta4'
+
+select * from pergunta where resposta_correta <> 5 order by id_perg
+
+ALTER TABLE pergunta 
+ALTER COLUMN resposta_correta TYPE int USING resposta_correta::integer
+
+-- Converta os valores atuais para inteiros
+UPDATE pergunta 
+SET resposta_correta = resposta_correta::int;
+
+-- Altere o tipo da coluna de varchar para int
+ALTER TABLE pergunta 
+ALTER COLUMN resposta_correta TYPE int USING resposta_correta::int;
+
