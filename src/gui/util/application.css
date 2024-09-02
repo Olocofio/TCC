@@ -1,0 +1,38 @@
+/* Estilo para o DialogPane do Alert */
+.dialog-pane {
+    -fx-background-color: #235db2;  /* Fundo azul */
+    -fx-border-width: 0;            /* Sem bordas */
+    -fx-background-radius: 5px;
+}
+
+/* Estilo para o título do Alert */
+.dialog-pane .header-panel {
+    -fx-background-color: #235db2;  /* Fundo azul */
+    -fx-text-fill: white;           /* Texto branco */
+    -fx-font-weight: bold;          /* Negrito para o título */
+    -fx-padding: 10px;
+    -fx-border-width: 0;            /* Sem bordas */
+    -fx-border-radius: 5px 5px 0 0;
+}
+
+/* Estilo para o conteúdo do Alert */
+.dialog-pane .content.label {
+    -fx-font-size: 14px;            /* Tamanho da fonte */
+    -fx-text-fill: white;           /* Texto branco */
+    -fx-padding: 10px;
+    -fx-font-weight: bold; 
+}
+
+/* Estilo para os botões */
+.button-bar .button {
+    -fx-background-color: #235db2;  /* Fundo azul */
+    -fx-text-fill: white;           /* Texto branco */
+    -fx-font-weight: bold;          /* Negrito */
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-border-width: 0;            /* Sem bordas */
+}
+
+.button-bar .button:hover {
+    -fx-background-color: #1d4b94;  /* Azul um pouco mais escuro ao passar o mouse */
+}

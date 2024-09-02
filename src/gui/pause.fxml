@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="667.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.PauseController">
+	<children>
+      <ImageView fitHeight="667.0" fitWidth="375.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Imagens/opcoes.jpg" />
+         </image>
+      </ImageView>
+		<BorderPane prefHeight="667.0" prefWidth="375.0">
+			<center>
+				<AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="btnSair" layoutX="121.0" layoutY="424.0" mnemonicParsing="false" onMouseClicked="#btnSairMouseClicked" prefHeight="25.0" prefWidth="134.0" style="-fx-background-color: #235db2; -fx-border-radius: 50px;" text="Sair" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="121.0" layoutY="341.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="134.0" style="-fx-background-color: #235db2; -fx-border-radius: 50px;" text="Reiniciar" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="121.0" layoutY="259.0" mnemonicParsing="false" onMouseClicked="#btnRetomarMouseClicked" prefHeight="25.0" prefWidth="134.0" style="-fx-background-color: #235db2; -fx-border-radius: 50px;" text="Retomar" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+				</AnchorPane>
+			</center>
+		</BorderPane>
+	</children>
+</AnchorPane>

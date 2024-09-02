@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<AnchorPane prefHeight="667.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CadastroController">   <children>
+      <ImageView fitHeight="675.0" fitWidth="381.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Imagens/cadastro.jpg" />
+         </image>
+      </ImageView>
+      <BorderPane prefHeight="667.0" prefWidth="375.0">
+         <center>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TextField id="txtNome" fx:id="txtNome" layoutX="88.0" layoutY="270.0" prefHeight="34.0" prefWidth="199.0" promptText="Nome" style="-fx-background-color: #fff; -fx-border-color: f8106a; -fx-border-width: 0px 0px 1px 0px;" />
+                  <TextField id="txtEmail" fx:id="txtEmail" layoutX="89.0" layoutY="336.0" prefHeight="34.0" prefWidth="199.0" promptText="Email" style="-fx-background-color: #fff; -fx-border-color: f8106a; -fx-border-width: 0px 0px 1px 0px;" />
+                  <PasswordField id="txtSenha" fx:id="txtSenha" layoutX="89.0" layoutY="408.0" prefHeight="34.0" prefWidth="199.0" promptText="Senha" style="-fx-background-color: #fff; -fx-border-color: f8106a; -fx-border-width: 0px 0px 1px 0px;" />
+                  <TextField id="txtTelefone" fx:id="txtTelefone" layoutX="88.0" layoutY="482.0" prefHeight="34.0" prefWidth="199.0" promptText="Telefone" style="-fx-background-color: #fff; -fx-border-color: f8106a; -fx-border-width: 0px 0px 1px 0px;" />
+<Button fx:id="btnCadastrar" layoutX="147.0" layoutY="565.0" mnemonicParsing="false" onAction="#onbtnCadastrarAction" prefHeight="34.0" prefWidth="82.0" style="-fx-background-color: #235db2; -fx-border-radius: 10px;" text="Cadastrar" textFill="WHITE" />
+                  <ImageView fx:id="imgHome" fitHeight="26.0" fitWidth="31.0" layoutX="314.0" layoutY="28.0" onMouseClicked="#onimgHomeMouseClicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Imagens/casaBranca.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="imgVoltar" fitHeight="40.0" fitWidth="30.0" layoutX="24.0" layoutY="26.0" onMouseClicked="#onimgVoltarClicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Imagens/seta.png" />
+                     </image>
+                  </ImageView>               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
