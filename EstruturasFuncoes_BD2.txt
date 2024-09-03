@@ -1,0 +1,40 @@
+Select distinct materia from pergunta -> Select para pegar todas as matérias existentes
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Partida esquema de pontuação:
+insert into partida (id_usu, dt_game, hr_game, pontuacao) VALUES
+(346, '2024-08-15', '20:12:00', 80) -> Inserir dados na tabela de partida
+Campos:
+- id_usu  -> id do usuário
+- dt_game -> data da partida, ex: pegar com função Date
+- hr_game -> pegar horário final do jogo
+- pontuação -> pontuação da partida, cada acerto 1 ponto, cada erro -1
+
+Select * from partida where id_usu = '?'
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+SELECT
+    pergunta,
+    shuffled[1] AS resposta1,
+    shuffled[2] AS resposta2,
+    shuffled[3] AS resposta3,
+    shuffled[4] AS resposta4
+FROM pergunta
+JOIN LATERAL (
+    SELECT embaralhar_array(ARRAY[resposta1, resposta2, resposta3, resposta4]) AS shuffled
+) AS resultado ON true;
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
+INSERT INTO usuario(nome, email, senha, telefone)
+VALUES ('usuario1', 'usuario1@hotmail.com', crypt('minhaSenhaSecreta', gen_salt('bf')), '14998422045');
+
+Select * from usuario where id = '?'
+
+SELECT * FROM usuario
+WHERE nome = 'usuario1'
+AND senha = crypt('minhaSenhaSecreta', senha);
