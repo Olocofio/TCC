@@ -1,5 +1,8 @@
 package application;
 	
+import java.io.IOException;
+
+import gui.QuizController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -56,9 +59,7 @@ public class Main extends Application {
         }
     }
 	
-	public static void changeScreen(String scr, String materiaSelecionada, Integer quantidadePerguntas) {
-		
-	}
+
 	
 	 public static void changeScreen(String scr) {
 		switch(scr) {
@@ -84,6 +85,27 @@ public class Main extends Application {
 		}
 
 	}
+	public static void changeScreen(String scr, String materiaSelecionada, Integer quantidadePerguntas){
+		    if (scr.equals("quiz")) {
+		        // Obter o controller do Quiz
+		    	try {
+			        FXMLLoader loader = new FXMLLoader(Main.class.getResource("/gui/quiz.fxml"));
+			        Parent root = loader.load();
+	
+			        QuizController quizController = loader.getController();
+			        quizController.initializeQuiz(materiaSelecionada, quantidadePerguntas);
+	
+			        stage.setScene(new Scene(root));
+			    } catch(IOException ie) {
+		            ie.printStackTrace();
+		        } 
+		    } else {
+		        // Outras cenas
+		    }
+		}
+
+	 
+
 	
 	
 	

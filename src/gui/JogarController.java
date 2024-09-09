@@ -26,6 +26,7 @@ public class JogarController {
     @FXML
     private Button btnComecar;
     
+    
     public void initialize() {
         loadComboBoxMateria();
         configureSpinnerQuantidade();
@@ -53,21 +54,18 @@ public class JogarController {
     public void onimgHomeMouseClicked() {
     	Main.changeScreen("home");
     }
-    public String getMateriaSelecionada() {
-    	String materiaSelecionada = cmbMateria.getValue();
-        return materiaSelecionada;
-    }
-
-    public int getQuantidadePerguntas() {
-    	Integer quantidadePerguntas = spnQuantidade.getValue();
-        return quantidadePerguntas;
-    } 
+    
+    
     public void btnComecarClicked() {
     	String materiaSelecionada = cmbMateria.getValue();
-        Integer quantidadePerguntas = spnQuantidade.getValue();
-        
-        if (materiaSelecionada != null && quantidadePerguntas != null) {
-            Main.changeScreen("quiz"); // Muda a tela depois de definir os valores
+        int quantidadePerguntas = spnQuantidade.getValue();
+
+        if (materiaSelecionada != null) {
+            // Armazena os valores no singleton
+            QuizData.getInstance().setMateriaSelecionada(materiaSelecionada);
+            QuizData.getInstance().setQuantidadePerguntas(quantidadePerguntas);
+
+            Main.changeScreen("quiz", materiaSelecionada, quantidadePerguntas); // Muda a tela depois de definir os valores
         } else {
             Alerts.showAlert("Aviso", "Dados incompletos", "Por favor, selecione uma matéria e a quantidade de perguntas.", AlertType.WARNING);
         }
