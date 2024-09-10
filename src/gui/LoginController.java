@@ -42,7 +42,6 @@ public class LoginController {
         if (usuario != null) {
             // Armazena o usuário na sessão
             UserSession.getInstance(usuario);
-            Alerts.showAlert("Mensagem", "Login", "Login realizado com sucesso!", AlertType.INFORMATION);
             Main.changeScreen("jogar");
         } else {
             Alerts.showAlert("Erro", "Login", "Email ou senha incorretos!", AlertType.ERROR);

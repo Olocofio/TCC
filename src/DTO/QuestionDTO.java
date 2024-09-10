@@ -1,5 +1,8 @@
 package DTO;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class QuestionDTO {
 	private int id;
     private String materia;
@@ -65,4 +68,7 @@ public class QuestionDTO {
 	public void setRespostaCorreta(String respostaCorreta) {
 		this.respostaCorreta = respostaCorreta;
 	}
+	public List<String> getRespostas() {
+        return Arrays.asList(resposta1, resposta2, resposta3, resposta4);
+    }
 }
