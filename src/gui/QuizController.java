@@ -23,6 +23,7 @@ public class QuizController {
     private Button btn3;
     @FXML
     private Button btn4;
+    
     private Button[] buttons;
 
     
