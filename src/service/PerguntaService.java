@@ -46,9 +46,10 @@ public class PerguntaService {
     public List<QuestionDTO> findQuestionsByMateria(String materia, int questoes) {
         List<QuestionDTO> questions = new ArrayList<>();
         
-        String sql = "SELECT * FROM pergunta WHERE materia = ? ORDER BY RANDOM()";
+        String sql = "SELECT * FROM pergunta WHERE materia = ? ORDER BY RANDOM() LIMIT ?";
         try (Connection c = new ConexaoDAO().getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
             ps.setString(1, materia);
+            ps.setInt(2, questoes);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
