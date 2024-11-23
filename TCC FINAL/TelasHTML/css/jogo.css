@@ -1,0 +1,191 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('../img/fundo.jpeg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.container {
+    text-align: center;
+    width: 100%;
+}
+
+.logo img {
+    max-width: 150px;
+    margin-bottom: 20px;
+}
+
+.pergunta {
+    background-color: #1e88e5;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #f8106a;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.btn-pular {
+    width: 20%;
+    height: 10%;
+    cursor: pointer;
+    margin-top: 20px;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn-group button {
+    background-color: #235db2;
+    color: white;
+    padding: 15px 30px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 18px;
+    width: 150px;
+}
+
+.btn-group button:hover {
+    background-color: #0d47a1;
+}
+
+.settings-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.settings-icon img {
+    width: 40px;
+}
+
+/* Estilo da barra de notificação no topo */
+.notification {
+    visibility: hidden;
+    /* Escondido por padrão */
+    min-width: 300px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 16px;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    font-size: 17px;
+    border-radius: 4px;
+    margin-top: 15px;
+}
+
+.notification.show {
+    visibility: visible;
+    /* Mostrar notificação */
+    -webkit-animation: fadeIn 0.5s, fadeOut 2.5s 2s;
+    animation: fadeIn 0.5s, fadeOut 2.5s 2s;
+}
+
+/* Animações para aparecer e desaparecer */
+@keyframes fadeIn {
+    from {
+        top: -50px;
+        opacity: 0;
+    }
+
+    to {
+        top: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        top: 0;
+        opacity: 1;
+    }
+
+    to {
+        top: -50px;
+        opacity: 0;
+    }
+}
+
+/* Estilização do temporizador */
+#timer {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    background-color: #0e438f;
+    border-radius: 100px;
+    padding: 10px;
+    width: 100px;
+    text-align: center;
+    margin: 0 auto 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    animation: pulse 1s infinite;
+    margin-bottom: 30px;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+#timer.low {
+    background-color: #e74c3c;
+    animation: shake 0.5s infinite;
+}
+
+/* Animação de trepidação (shake) */
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+
+    75% {
+        transform: translateX(-5px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
